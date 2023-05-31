@@ -3,7 +3,7 @@
 <div class="content-header">
     <div class="container-fluid">
       <?php
-      if ($_SESSION["hasil"]) {
+      if (isset($_SESSION["hasil"])) {
         if ($_SESSION["hasil"]) {
       ?>
             <div class="alert-success alert-dismissible">
@@ -12,9 +12,9 @@
               <?php echo $_SESSION["pesan"] ?>
             </div>
           <?php
-        } else {
+           } else {
           ?>
-          <div class="alert alert-danger alert-dismissible">
+            <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
             <h5><i class="icon fas fa-ban"></i>Gagal</h5>
             <?php echo $_SESSION["pesan"] ?>
@@ -86,9 +86,9 @@
               <tr>
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $row['nama_jabatan'] ?></td>
-                  <td><?php echo $row['gapok_jabatan'] ?></td>
-                  <td><?php echo $row['tunjangan_jabatan'] ?></td>
-                  <td><?php echo $row['uang_makan_perhari'] ?></td>
+                  <td style="text-align: right;"><?php echo $row['gapok_jabatan'] ?></td>
+                  <td style="text-align: right;"><?php echo $row['tunjangan_jabatan'] ?></td>
+                  <td style="text-align: right;"><?php echo $row['uang_makan_perhari'] ?></td>
                   <td>
                       <a href="?page=jabatanupdate&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-sm mr-1">
                   <i class="fa fa-edit"></i>Ubah</a>
