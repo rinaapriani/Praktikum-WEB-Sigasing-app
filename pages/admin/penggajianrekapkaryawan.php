@@ -31,12 +31,14 @@
       ?>
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Rekapitulasi Penggajian</h1>
+          <h1 class="m-0">Rekapitulasi Penggajian Karyawan</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-            <li class="breadcrumb-item active">Rekapitulasi Penggajian</li>
+            <li class="breadcrumb-item"><a href="?page=penggajianrekap">Rekap Gaji</a></li>
+            <li class="breadcrumb-item"><a href="?page=penggajianrekapbulan&tahun">Tahun</a></li>
+            <li class="breadcrumb-item active"></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -49,7 +51,7 @@
     <div class="card">
     <div class="card-header">
       <h3 class="card-title">Data Rekap Gaji</h3>   
-      <a href="export/penggajianrekap-pdf.php" class="btn btn-success btn-sm float-right">
+      <a href="export/penggajianrekapkaryawan-pdf.php" class="btn btn-success btn-sm float-right">
           <i class="fa fa-plus-circle">Export PDF</i></a>     
     </div>
     <div class="card-body">
@@ -57,23 +59,23 @@
           <thead>
               <tr>
                   <th>No</th>
-                  <th>Tahun</th>
+                  <th>NIK</th>
+                  <th>Nama Lengkap</th>
                   <th>Gaji Pokok</th>
                   <th>Tunjangan</th>
                   <th>Uang Makan</th>
                   <th>Total</th>
-                  <th>Opsi</th>
               </tr>
           </thead>
           <tfoot>
               <tr>
                   <th>No</th>
-                  <th>Tahun</th>
+                  <th>NIK</th>
+                  <th>Nama Lengkap</th>
                   <th>Gaji Pokok</th>
                   <th>Tunjangan</th>
                   <th>Uang Makan</th>
                   <th>Total</th>
-                  <th>Opsi</th>
               </tr>
           </tfoot>
           <tbody>
@@ -81,14 +83,16 @@
               $database = new Database();
               $db = $database->getConnection();
 
-              $selectSql = "SELECT tahun,
-                                    SUM(P.gapok) jumlah_gapok,
-                                    SUM(P.tunjangan) jumlah_tunjangan,
-                                    SUM(P.uang_makan) jumlah_uang_makan,
-                                    SUM(P.gapok) + SUM(P.tunjangan) + SUM(P.uang_makan) total
-                                FROM penggajian P
-                                GROUP BY tahun;";
-
+              $selectSql = "SELECT P.karyawan_id,
+                                K.nik,
+                                K.nama_lengkap,
+                               SUM(P.gapok) jumlah_gapok,
+                               SUM(P.tunjangan) jumlah_tunjangan,
+                               SUM(P.uang_makan) jumlah_uang_makan,
+                               SUM(P.gapok) + SUM(P.tunjangan) + SUM(P.uang_makan) total
+                            FROM penggajian P
+                            LEFT JOIN karyawan K ON P.karyawan_id = K.id
+                            GROUP BY P.karyawan_id";
               $stmt = $db->prepare($selectSql);
               $stmt->execute();
 
@@ -97,15 +101,12 @@
               ?>
               <tr>
                   <td><?php echo $no++ ?></td>
-                  <td><?php echo $row['tahun'] ?></td>
+                  <td><?php echo $row['nik'] ?></td>
+                  <td><?php echo $row['nama_lengkap'] ?></td>
                   <td style="text-align:right"><?php echo number_format($row['jumlah_gapok']) ?></td>
                   <td style="text-align:right"><?php echo number_format($row['jumlah_tunjangan']) ?></td>
                   <td style="text-align:right"><?php echo number_format($row['jumlah_uang_makan']) ?></td>
                   <td style="text-align:right"><?php echo number_format($row['total']) ?></td>
-                  <td>
-                      <a href="?page=penggajianrekapbulan&tahun=<?php echo $row['tahun'] ?>" class="btn btn-info btn-sm mr-1">
-                  <i class="fa fa-info"></i> Rincian</a>
-                  </td>
               </tr>   
               <?php
               }
