@@ -3,9 +3,13 @@
 <div class="content-header">
     <div class="container-fluid">
       <?php
-      if ($_SESSION["hasil"]) {
+      if (isset($_SESSION["hasil"])) {
         if ($_SESSION["hasil"]) {
       ?>
+            <script src="plugins/datatables-button/js/buttons.colVis.min.js"></script>
+      <script src="plugins/pdfmake/pdfmake.min.js"></script>
+      <script src="plugins/pdfmake/pdfmake/vfs_fonts.js"></script>
+
             <div class="alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
               <h5><i class="icon fas fa-check"></i>Berhasil</h5>
@@ -111,11 +115,15 @@
     </div>
     </div>
   </div>
-
   <?php include "partials/scripts.php" ?>
   <?php include "partials/scriptsdatatables.php" ?>
   <script>
       $(function(){
-          $('#mytable').DataTable()
+          $("#mytable").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#mytable_wrapper .col-md-6:eq(0)');
       });
   </script>
