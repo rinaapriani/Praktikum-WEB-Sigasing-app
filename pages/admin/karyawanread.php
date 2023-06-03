@@ -52,7 +52,7 @@
       <table id="mytable" class="table table-bordered table-hover">
           <thead>
               <tr>
-                  <th>No</th>
+                  <th>NIK</th>
                   <th>Nama Karyawan</th>
                   <th>Bagian</th>
                   <th>Jabatan</th>
@@ -61,7 +61,7 @@
           </thead>
           <tfoot>
               <tr>
-                  <th>No</th>
+                  <th>NIK</th>
                   <th>Nama Karyawan</th>
                   <th>Bagian</th>
                   <th>Jabatan</th>
@@ -91,7 +91,6 @@
               $stmt = $db->prepare($selectSql);
               $stmt->execute();
 
-              $no = 1;
               while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               ?>
               <tr>

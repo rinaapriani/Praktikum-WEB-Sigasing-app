@@ -94,19 +94,19 @@ if (isset($_POST['button_delete'])) {
                 <div class="col-sm-6">
                 <div class="form-group">
                         <label for="nik">Nomor Induk Karyawan</label>
-                        <input type="text" class="form-control" name="nik" value="<?php echo $row['nik'] ?>">
+                        <input type="text" class="form-control" name="nik" value="<?php echo $row['nik'] ?>" disabled>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="handphone">Handphone</label>
-                        <input type="text" class="form-control" name="handphone" value="<?php echo $row['handphone'] ?>">
+                        <input type="text" class="form-control" name="handphone" value="<?php echo $row['handphone'] ?>" disabled>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="nama_lengkap">Nama Lengkap</label>
-                <input type="text" class="form-control" name="nama_lengkap" value="<?php echo $row['nama_lengkap'] ?>">
+                <input type="text" class="form-control" name="nama_lengkap" value="<?php echo $row['nama_lengkap'] ?>" disabled>
             </div>
             <form action="" method="post">
                 <input type="hidden" value="<?php echo $id ?>" name="karyawan_id">

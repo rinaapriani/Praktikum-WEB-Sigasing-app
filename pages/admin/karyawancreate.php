@@ -122,7 +122,8 @@ if (isset($_POST['button_create'])) {
                     <input type="date" class="form-control" name="tanggal_masuk">
                 </div>
                 <div class="form-group">
-                    <input type="hidden" class="form-control" name="username">
+                <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -134,7 +135,7 @@ if (isset($_POST['button_create'])) {
                 </div>
                 <div class="form-group">
                     <label for="peran">Peran</label>
-                    <select class="form-control" name="peran">
+                    <select class="form-control" name="peran" id="peran">
                         <option value="">-- Pilih Peran --</option>
                         <option value="ADMIN">ADMIN</option>
                         <option value="USER">USER</option>
