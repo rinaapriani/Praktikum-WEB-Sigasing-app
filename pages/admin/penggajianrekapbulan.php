@@ -6,7 +6,7 @@
       if (isset($_SESSION["hasil"])) {
         if ($_SESSION["hasil"]) {
       ?>
-            <script src="plugins/datatables-button/js/buttons.colVis.min.js"></script>
+      <script src="plugins/datatables-button/js/buttons.colVis.min.js"></script>
       <script src="plugins/pdfmake/pdfmake.min.js"></script>
       <script src="plugins/pdfmake/pdfmake/vfs_fonts.js"></script>
 
@@ -37,7 +37,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
             <li class="breadcrumb-item"><a href="?page=penggajianrekap">Rekap Gaji</a></li>
-            <li class="breadcrumb-item active">2020</li>
+            <li class="breadcrumb-item active"><?php echo $_GET['tahun'] ?></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -49,7 +49,7 @@
   <div class="content">
     <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Data Rekap Gaji</h3>   
+      <h3 class="card-title">Data Rekap Gaji Tahun <?php echo $_GET['tahun']?></h3>   
       <a href="export/penggajianrekapbulan-pdf.php" class="btn btn-success btn-sm float-right">
           <i class="fa fa-plus-circle">Export PDF</i></a>     
     </div>

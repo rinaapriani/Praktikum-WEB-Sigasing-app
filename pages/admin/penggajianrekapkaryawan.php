@@ -29,6 +29,7 @@
         unset($_SESSION['pesan']);
       }
       ?>
+
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Rekapitulasi Penggajian Karyawan</h1>
@@ -37,8 +38,8 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
             <li class="breadcrumb-item"><a href="?page=penggajianrekap">Rekap Gaji</a></li>
-            <li class="breadcrumb-item"><a href="?page=penggajianrekapbulan&tahun">Tahun</a></li>
-            <li class="breadcrumb-item active"></li>
+            <li class="breadcrumb-item active">Bulan ke-<?php echo $_GET['bulan'] ?></li>
+            </li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -50,7 +51,7 @@
   <div class="content">
     <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Data Rekap Gaji</h3>   
+      <h3 class="card-title">Data Rekap Gaji Bulan <?php echo $_GET['bulan']?></h3>   
       <a href="export/penggajianrekapkaryawan-pdf.php" class="btn btn-success btn-sm float-right">
           <i class="fa fa-plus-circle">Export PDF</i></a>     
     </div>
